@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dialouge Box</title>
+    <style>
+        body {
+            background-color: #f2f7f5;
+        }
+        .container {
+            display: block;
+            text-align: center;
+        }
+        .btn {
+            height: 25px;
+            width: 150px;
+            margin: 20px auto;
+            padding: AUTO;
+            font-size: 20px;
+            border-radius: 20px;
+            border: none;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: #0be641;
+            border: 0.5px solid #222928; ;
+            color: #475d5b;
+            display: block;
+        }
+        .btn:hover{
+            background-color: #19f805;
+            border-radius: 70px;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+        .dialog-box-container {
+            background-color: rgba(0, 0, 0, 0.6);
+            position: fixed;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .model {
+            background-color: white;
+            box-shadow: -5px 5px 10px 2px #475d5b;
+            border: 0.5px solid #222928;
+            position: relative;
+            padding: 20px 30px;
+            border-radius: 30px;
+            margin: 10px;
+        }
+        .model:hover{
+            box-shadow: -5px 5px 10px 2px #111111;
+        }
+        .close-icon {
+            position: absolute;
+            top: 5px;
+            right: 6px;
+            height: 30px;
+            cursor: pointer; 
+        }
+        .remove-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .remove-btn:hover {
+            background-color: #c0392b;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="dialog-box-container">
+        <div class="model">
+            <img src="remove.png" class="close-icon" onclick="closeDialog()">
+            <h2 class="container">Fill the Student Information.</h2>
+                <form id="studentForm" onsubmit="addStudent(event)">
+                    <label for="name"><B>Name:</B></label>
+                    <input type="text" id="name" placeholder="Enter Your Name" required >
+                    
+                    <label for="age"><b>Age:</B></label>
+                    <input type="number" id="age"  placeholder="Enter Your Age" required>
+              
+                    <label for="grade"><b>Grade:</B></label>
+                    <input type="text" id="grade" placeholder="Enter Your Grade" required>
+              
+                    <button class="btn" type="submit">SUBMIT</button>
+                  </form>
+                  <div id="studentList">
+                    <ul id="students"></ul>
+                  </div>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+    <script>
+    function addStudent(event) {
+     event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const age = document.getElementById('age').value;
+    const grade = document.getElementById('grade').value;
+  
+    const li = document.createElement('li');
+    li.innerHTML =
+      `Name: ${name}, Age: ${age}, Grade: ${grade}
+      <button class="remove-btn" onclick="removeStudent(this)">Remove</button>`;
+  
+    document.getElementById('students').appendChild(li);
+ 
+    document.getElementById('studentForm').reset();
+  }
+
+  function removeStudent(button) {
+    button.parentElement.remove();
+  }
+  
+    </script>
+</body>
+</html>
